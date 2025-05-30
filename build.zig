@@ -96,10 +96,9 @@ pub fn build(b: *std.Build) void {
 
     b.installArtifact(libevents);
 
-    libevents.installHeadersDirectory(upstream.path("libs/cpp/parse"), "libevents/parse", .{});
+    libevents.installHeadersDirectory(upstream.path("libs/cpp/parse"), "libevents/parse", .{ .include_extensions = &.{ ".hpp", ".h" } });
     libevents.installHeadersDirectory(upstream.path("libs/cpp/common"), "libevents/common", .{});
     libevents.installHeadersDirectory(upstream.path("libs/cpp/protocol"), "libevents/protocol", .{});
-    libevents.installHeadersDirectory(upstream.path("libs/cpp/parse/nlohmann"), "libevents/nlohmann", .{});
 
     // Tests
     if (main_project and enable_testing) {
